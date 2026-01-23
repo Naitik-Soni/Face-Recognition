@@ -1,5 +1,7 @@
 import json
 import numpy as np
+import os
+import glob
 
 def numpy_to_python(obj):
     if isinstance(obj, np.integer):
@@ -22,3 +24,9 @@ def save_landmarks_to_json(data, save_path):
     # Save FULL data (not just last face)
     with open(save_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, default=numpy_to_python)
+
+def get_image_paths(dir_path, extensions=("*.jpg", "*.png", "*.jpeg")):
+    paths = []
+    for ext in extensions:
+        paths.extend(glob.glob(os.path.join(dir_path, ext)))
+    return sorted(paths)

@@ -2,7 +2,7 @@
 import cv2
 import random
 
-def draw_face_landmarks(image_path, data, save_path=None, resize_factor=1):
+def draw_face_landmarks(image_path, data, save_path=None):
     # Read the image
     img = cv2.imread(image_path)
 
@@ -16,7 +16,7 @@ def draw_face_landmarks(image_path, data, save_path=None, resize_factor=1):
 
         # Bounding box
         x1, y1, x2, y2 = map(int, face_data["facial_area"])
-        cv2.rectangle(img, (x1, y1), (x2, y2), color, int(5/resize_factor))
+        cv2.rectangle(img, (x1, y1), (x2, y2), color, 5)
 
         # Face label
         cv2.putText(
@@ -24,7 +24,7 @@ def draw_face_landmarks(image_path, data, save_path=None, resize_factor=1):
             face_id,
             (x1, y1 - 10),
             cv2.FONT_HERSHEY_SIMPLEX,
-            1/resize_factor,
+            1,
             color,
             3
         )
@@ -34,7 +34,7 @@ def draw_face_landmarks(image_path, data, save_path=None, resize_factor=1):
             x, y = int(x), int(y)
 
             # Point
-            cv2.circle(img, (x, y), int(12/resize_factor), (0, 0, 255), -1)
+            cv2.circle(img, (x, y), 12, (0, 0, 255), -1)
 
             # Label
             cv2.putText(
@@ -42,14 +42,11 @@ def draw_face_landmarks(image_path, data, save_path=None, resize_factor=1):
                 name,
                 (x + 5, y - 5),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                1/resize_factor,
+                1,
                 (255, 255, 255),
                 2,
                 cv2.LINE_AA
             )
-
-    # Resize for display
-    img = cv2.resize(img, None, fx=resize_factor, fy=resize_factor)
 
     # Show result
     cv2.imwrite(save_path, img)
