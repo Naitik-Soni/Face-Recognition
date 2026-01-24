@@ -8,6 +8,9 @@ def draw_face_landmarks(image_path, data, save_path=None):
 
     if img is None:
         raise ValueError("Image not found!")
+    
+    h, w = img.shape[:2]
+    r_factor = w/1280
 
     # Draw all faces
     for face_id, face_data in data.items():
@@ -16,7 +19,7 @@ def draw_face_landmarks(image_path, data, save_path=None):
 
         # Bounding box
         x1, y1, x2, y2 = map(int, face_data["facial_area"])
-        cv2.rectangle(img, (x1, y1), (x2, y2), color, 5)
+        cv2.rectangle(img, (x1, y1), (x2, y2), color, int(5*r_factor))
 
         # Face label
         cv2.putText(
@@ -24,7 +27,7 @@ def draw_face_landmarks(image_path, data, save_path=None):
             face_id,
             (x1, y1 - 10),
             cv2.FONT_HERSHEY_SIMPLEX,
-            1,
+            r_factor,
             color,
             3
         )
@@ -34,7 +37,7 @@ def draw_face_landmarks(image_path, data, save_path=None):
             x, y = int(x), int(y)
 
             # Point
-            cv2.circle(img, (x, y), 12, (0, 0, 255), -1)
+            cv2.circle(img, (x, y), int(12*r_factor), (0, 0, 255), -1)
 
             # Label
             cv2.putText(
@@ -42,7 +45,7 @@ def draw_face_landmarks(image_path, data, save_path=None):
                 name,
                 (x + 5, y - 5),
                 cv2.FONT_HERSHEY_SIMPLEX,
-                1,
+                r_factor,
                 (255, 255, 255),
                 2,
                 cv2.LINE_AA

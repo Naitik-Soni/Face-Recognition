@@ -30,5 +30,9 @@ if __name__ == "__main__":
 
     images_path = get_image_paths(INPUT_DIR)
 
-    for image_path in images_path[181:187]:
+    # images_path = [
+    #     r"C:\Users\naiti\OneDrive\Pictures\Pictures\Naitik (5).jpg"
+    # ]
+
+    for image_path in images_path[:7]:
         main(image_path, SAVE_FACE_LANDMARKS=True)
