@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-face_path = r"P:\FaceTech\Face-Tech\Retina face\Aligned_image.png"
+# face_path = r"P:\FaceTech\Face-Tech\Retina face\Aligned_image.png"
 
 def normalize_face_input(face_path):
     face = cv2.imread(face_path)
