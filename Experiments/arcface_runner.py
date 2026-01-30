@@ -20,5 +20,7 @@ def get_embedding(img_path):
 emb1 = get_embedding("Aligned_image.png")
 emb2 = get_embedding("Aligned_image2.png")
 
+print(type(emb1), emb1.shape)
+
 cosine_sim = np.dot(emb1, emb2.T)[0][0]
 print("Cosine similarity:", cosine_sim)

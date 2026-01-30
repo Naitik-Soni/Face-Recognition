@@ -21,5 +21,4 @@ def normalize_face_input(face):
     # Ensure contiguous
     img = np.ascontiguousarray(img)
 
-    print("SHAPE:", img.shape, "CONTIGUOUS:", img.flags["C_CONTIGUOUS"])
     return img
