@@ -31,7 +31,7 @@ if __name__ == "__main__":
     images_path = get_image_paths(INPUT_DIR)
 
     images_path = [
-        r"P:\FaceTech\Face-Tech\Custom_Data\images\train\09265.png"
+        r"C:\Users\baps\Documents\Projects\Smart-Attendance-System\storage\images\users\emp_001\aligned\face_003.png"
     ]
 
     for image_path in images_path:
